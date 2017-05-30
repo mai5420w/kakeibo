@@ -1,0 +1,12 @@
+form {
+    margin: 10px auto;
+    background: @link;
+    width: 347px;
+    /* text-align: center; */
+    padding: 10px;
+}
+
+h1 {
+	size 10px;
+	color #F08080;
+}

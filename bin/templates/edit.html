@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- 日本語入力できるようにする処理 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>編集</title>
+</head>
+<body>
+ <div>
+    <form th:action="@{/top}" th:object="${users}" method="get">
+        <a href='http://localhost:8080/top'>
+        <img src="kakeibo.jpg" width="100" height="100" alt="logo"></img></a>
+        <input type="hidden" name = "id" th:value = "${id}" />
+    </form>
+    </div>
+新しい金額を入力してください。
+<h3 th:text="${message}"></h3>
+<form th:action="@{/editup}" method="get">
+¥<input type="text"  name="expense" size="20" maxlength="7" pattern="^[0-9]+$" required="required" />
+
+<input type="submit" value="更新"/>
+</form>
+</body>
+</html>
