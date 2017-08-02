@@ -1,19 +1,12 @@
 package cost.controller;
-
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.crypto.Data;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -21,14 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import cost.dao.DataTable;
 import cost.dao.data.DataBox;
 import cost.dao.data.DataDaoImpl;
 import cost.dao.data.DataRepository;
-import cost.dao.pay.DataSum;
-import cost.dao.users.Users;
 import cost.dao.users.UsersRepository;
 
 
@@ -51,10 +40,6 @@ public class DataController {
 	
 	@Autowired
 	DataRepository dataRepository;
-	
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
-	
-
 	
 	@RequestMapping(value = "/top/input", method = RequestMethod.POST)
 	public String Sum(Model model, @ModelAttribute DataBox data) throws ParseException {
@@ -98,7 +83,7 @@ public class DataController {
 	    }else if(data.getCotegory().equals("others")){
 	    	inputOthers = BigDecimal.valueOf(data.getData());
 	    }
-	    
+
 		DataTable dataTable = new DataTable(data.getId(),inputDate,inputFood, inputDaily, inputEntame, inputTraffic, inputAmusement, inputFashion,inputGoods, inputMedical, inputPublicfee, inputRent, inputOthers);
 		dataRepository.save(dataTable);
 		

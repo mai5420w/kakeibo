@@ -46,10 +46,10 @@ public class EditController {
 	 */
 	@RequestMapping(value = "/editup" , method = RequestMethod.GET)
 	public String update(Model model,@RequestParam("expense") final int expense){
-		BigDecimal newExpense = new BigDecimal(expense); //TODO htmlから金額を取得
-		DataTable d = new DataTable();
-		d = historyService.findOne(dataId); //対応するdata_idのレコードを取得
-		historyService.update(dao.updateData(d, newExpense)); //ここでupdateしている
+		BigDecimal newExpense = new BigDecimal(expense); // 画面から金額を取得
+		DataTable money = new DataTable();
+		money = historyService.findOne(dataId); //対応するdata_idのレコードを取得
+		historyService.update(dao.updateData(money, newExpense)); //ここでupdateしている
 
 		model.addAttribute("message", newExpense + "円に更新しました");
 		return "edit";
@@ -58,13 +58,14 @@ public class EditController {
 	/*
 	 *  削除(DELETE)メソッド
 	 */
-	@RequestMapping(value = "/editdel", method = RequestMethod.POST)
+	@RequestMapping(value = "/editdel", method = RequestMethod.GET)
 	public String deleteTask(@ModelAttribute CategorySum cs,Model model) {
 		//プライマリーキーであるData_IDの取得
-		int id = cs.getDataId(); //TODO ここで編集ボタンを押された入力された値のdata_idを取得したい
+		int id = cs.getDataId();
 		historyService.delete(id);
 		model.addAttribute("id", id);
-		return "delete";
+		model.addAttribute("message1", "削除しました");
+		return "details_day";
 	}
 
 }

@@ -2,8 +2,7 @@
 <!--
 	Spectral by HTML5 UP
 	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/licens-->
 <html>
 	<head>
 		<title>Kakeibo By Seattle girls</title>
@@ -11,58 +10,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/css/style.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body class="landing">
-
 		<!-- Page Wrapper -->
-			<div id="page-wrapper">
-
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-						  
-						    <div class="payment" th:text="'今月の支出: ¥' + ${sum} + '-'"></div>
-						  
-							<p><a th:href="@{http://localhost:8080/history(id=${id})}">りれき</a></p>
-							<form th:action="@{/top/input}" th:object="${dataBox}" method="post">
-    
-							  <input type="hidden" name = "id" th:value="${id}" />
-
-							    <section id="cta" class="wrapper style4">
-										<div class="inner">
-											<header>
-												<h2>家計簿アプリ</h2>
-												<p>わずか3秒で出費を記録。今度こそ続く家計簿</p>
-											</header>
-											<ul class="actions vertical">
-											  <div style="float:left;">
-											    <input class="button fit" value='2017-01-01' type="date" th:field="*{date}" min="2017-01-01" max="2017-12-31" required="required" />
-											  </div>
-											  <select class="button fit" name="カテゴリ" placeholder="カテゴリ" th:field ="*{cotegory}">
-										      <option value="food">食費</option>
-										      <option value="daily">日用品</option>
-										      <option value="entame">交際費</option>
-										      <option value="traffic">交通費</option>
-										      <option value="amusement">娯楽</option>
-										      <option value="fashion">ファッション・美容</option>
-										      <option value="goods">雑貨</option>
-										      <option value="medical">医療費</option>
-										      <option value="publicFee">公共料金</option>
-										      <option value="rent">家賃</option>
-										      <option value="others">その他</option>
-										    </select>
-										    <input class="button fit" type="text" value="¥" name="money" size="20" maxlength="7" th:field ="*{data}" required="required" placeholder="金額を入力" pattern="^[0-9]+$" />
-											</ul>
-										</div>
-									</section>
-							    <button class="button special" type='submit' name='action' value='input'>
-							      入力
-							    </button>
-							  </form>
-						</div>
-					</section>
-			</div>
+		<div id="page-wrapper">
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<div class="payment">
+						<a th:href="@{http://localhost:8080/history(id=${id})}">今月の支出</a> 
+					</div>
+					<div class="payment" th:text="'¥' + ${sum} + '-'"></div>
+					<form th:action="@{/top/input}" th:object="${dataBox}" method="post">
+						<input type="hidden" name = "id" th:value="${id}" />
+						<section id="cta" class="wrapper style4">
+							<div class="inner">
+								<header>
+									<h2>家計簿アプリ</h2>
+									<p>わずか3秒で出費を記録。</p>
+									<p>今度こそ続く家計簿。</p>
+								</header>
+								<ul class="actions vertical">
+									<div style="float:left;">
+										<input class="button fit" value='2017-01-01' type="date" th:field="*{date}" min="2017-01-01" max="2017-12-31" required="required" />
+									</div>
+									<select class="button fit" name="カテゴリ" placeholder="カテゴリ" th:field ="*{cotegory}">
+										<option value="food">食費</option>
+										<option value="daily">日用品</option>
+										<option value="entame">交際費</option>
+										<option value="traffic">交通費</option>
+										<option value="amusement">娯楽</option>
+										<option value="fashion">ファッション・美容</option>
+										<option value="goods">雑貨</option>
+										<option value="medical">医療費</option>
+										<option value="publicfee">公共料金</option>
+										<option value="rent">家賃</option>
+										<option value="others">その他</option>
+									</select>
+									<input class="button fit" type="text" value="¥" name="money" size="20" maxlength="7" th:field ="*{data}" required="required" placeholder="金額を入力" pattern="^[0-9]+$" />
+								</ul>
+							</div>
+						</section>
+						<button class="button special" type='submit' name='action' value='input'>入力</button>
+					</form>
+				</div>
+			</section>
+		</div>
 	</body>
 </html>

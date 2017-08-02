@@ -22,7 +22,6 @@ import cost.dao.DataTable;
 import cost.dao.data.DataBox;
 import cost.dao.pay.CategorySum;
 import cost.dao.pay.DataSum;
-import cost.dao.pay.PayBox;
 import cost.dao.pay.PayDaoImpl;
 import cost.dao.users.Users;
 
@@ -42,12 +41,10 @@ public class PayController {
 	private void init() {
 		dao = new PayDaoImpl(entityManager); 
 	}
-	
+	 
 	/**
 	 * 日毎の支出表示　例: 2017/05/08 支出¥200
-	 * @return
 	 */
-	
 	@RequestMapping(value = "/top",method = RequestMethod.GET)
 
 	public String loginTop(@ModelAttribute Users users, Model model){
@@ -56,26 +53,24 @@ public class PayController {
 		final List<DataTable>dataList = dao.getThismonth(id);
 	 
 
-	for(int i = 0 ; i < dataList.size(); i++){
-		expense = expense.add(dataList.get(i).getFood());
-		expense = expense.add(dataList.get(i).getDaily());
-		expense = expense.add(dataList.get(i).getEntame());
-		expense = expense.add(dataList.get(i).getTraffic());
-		expense = expense.add(dataList.get(i).getAmusement());
-		expense = expense.add(dataList.get(i).getFashion());
-		expense = expense.add(dataList.get(i).getGoods());
-		expense = expense.add(dataList.get(i).getMedical());
-		expense = expense.add(dataList.get(i).getPublicfee());
-		expense = expense.add(dataList.get(i).getRent());
-		expense = expense.add(dataList.get(i).getOthers());
+		for(int i = 0 ; i < dataList.size(); i++){
+			expense = expense.add(dataList.get(i).getFood());
+			expense = expense.add(dataList.get(i).getDaily());
+			expense = expense.add(dataList.get(i).getEntame());
+			expense = expense.add(dataList.get(i).getTraffic());
+			expense = expense.add(dataList.get(i).getAmusement());
+			expense = expense.add(dataList.get(i).getFashion());
+			expense = expense.add(dataList.get(i).getGoods());
+			expense = expense.add(dataList.get(i).getMedical());
+			expense = expense.add(dataList.get(i).getPublicfee());
+			expense = expense.add(dataList.get(i).getRent());
+			expense = expense.add(dataList.get(i).getOthers());
+		
+		}
 
-	}
-
-	model.addAttribute("sum", expense);
-	model.addAttribute("id", id);
-
-	return "top";
-
+		model.addAttribute("sum", expense);
+		model.addAttribute("id", id);
+		return "top";
 	}
 	
 	@RequestMapping(value = "/history", params="id", method = RequestMethod.GET)
@@ -129,7 +124,7 @@ public class PayController {
 				if(i == paylist.size()-1){ //最後のとき
 					dayExpense.add(expense);
 				}
-				// 最初の日付と異なるとき
+			// 最初の日付と異なるとき
 			}else{
 				dayExpense.add(expense);
 				expense = new BigDecimal(0);//０に戻す
@@ -251,106 +246,106 @@ public class PayController {
 	*/
 		@RequestMapping(value = "/details_month", params = "id", method = RequestMethod.GET)
 		public String detail_month(Model model , @RequestParam("id") final String id) {
-		List<CategorySum> csLastMonth = new ArrayList<CategorySum>();
-		List<DataTable> lastManthList = dao.getLastmonth(id);
+			List<CategorySum> csLastMonth = new ArrayList<CategorySum>();
+			List<DataTable> lastManthList = dao.getLastmonth(id);
 		
-		/* 先月のカテゴリー別支出額*/
-		BigDecimal foodSum = new BigDecimal(0);
-		BigDecimal dailySum = new BigDecimal(0);
-		BigDecimal entameSum = new BigDecimal(0);
-		BigDecimal trafficSum = new BigDecimal(0);
-		BigDecimal amusementSum = new BigDecimal(0);
-		BigDecimal fashionSum = new BigDecimal(0);
-		BigDecimal goodsSum = new BigDecimal(0);
-		BigDecimal medicalSum = new BigDecimal(0);
-		BigDecimal publicfeeSum = new BigDecimal(0);
-		BigDecimal rentSum = new BigDecimal(0);
-		BigDecimal othersSum = new BigDecimal(0);
-		BigDecimal totalLastSum = new BigDecimal(0); //先月の合計値
+			/* 先月のカテゴリー別支出額*/
+			BigDecimal foodSum = new BigDecimal(0);
+			BigDecimal dailySum = new BigDecimal(0);
+			BigDecimal entameSum = new BigDecimal(0);
+			BigDecimal trafficSum = new BigDecimal(0);
+			BigDecimal amusementSum = new BigDecimal(0);
+			BigDecimal fashionSum = new BigDecimal(0);
+			BigDecimal goodsSum = new BigDecimal(0);
+			BigDecimal medicalSum = new BigDecimal(0);
+			BigDecimal publicfeeSum = new BigDecimal(0);
+			BigDecimal rentSum = new BigDecimal(0);
+			BigDecimal othersSum = new BigDecimal(0);
+			BigDecimal totalLastSum = new BigDecimal(0); //先月の合計値
 		
-		for (int i = 0; i < lastManthList.size(); i++) {
-		foodSum = foodSum.add(lastManthList.get(i).getFood());
-		dailySum = dailySum.add(lastManthList.get(i).getDaily());
-		entameSum = entameSum.add(lastManthList.get(i).getEntame());
-		trafficSum = trafficSum.add(lastManthList.get(i).getTraffic());
-		amusementSum = amusementSum.add(lastManthList.get(i).getAmusement());
-		fashionSum = fashionSum.add(lastManthList.get(i).getFashion());
-		goodsSum = goodsSum.add(lastManthList.get(i).getGoods());
-		medicalSum = medicalSum.add(lastManthList.get(i).getMedical());
-		publicfeeSum = publicfeeSum.add(lastManthList.get(i).getPublicfee());
-		rentSum = rentSum.add(lastManthList.get(i).getRent());
-		othersSum = othersSum.add(lastManthList.get(i).getOthers());
-		}
+			for (int i = 0; i < lastManthList.size(); i++) {
+				foodSum = foodSum.add(lastManthList.get(i).getFood());
+				dailySum = dailySum.add(lastManthList.get(i).getDaily());
+				entameSum = entameSum.add(lastManthList.get(i).getEntame());
+				trafficSum = trafficSum.add(lastManthList.get(i).getTraffic());
+				amusementSum = amusementSum.add(lastManthList.get(i).getAmusement());
+				fashionSum = fashionSum.add(lastManthList.get(i).getFashion());
+				goodsSum = goodsSum.add(lastManthList.get(i).getGoods());
+				medicalSum = medicalSum.add(lastManthList.get(i).getMedical());
+				publicfeeSum = publicfeeSum.add(lastManthList.get(i).getPublicfee());
+				rentSum = rentSum.add(lastManthList.get(i).getRent());
+				othersSum = othersSum.add(lastManthList.get(i).getOthers());
+			}
 		
-		totalLastSum = foodSum.add(dailySum.add(entameSum.add(trafficSum.add(amusementSum
-		.add(fashionSum.add(goodsSum.add(medicalSum.add(publicfeeSum.add(rentSum.add(othersSum))))))))));
+			totalLastSum = foodSum.add(dailySum.add(entameSum.add(trafficSum.add(amusementSum
+							.add(fashionSum.add(goodsSum.add(medicalSum.add(publicfeeSum.add(rentSum.add(othersSum))))))))));
 		
-		csLastMonth.add(new CategorySum("食費",foodSum));
-		csLastMonth.add(new CategorySum("日用品",dailySum));
-		csLastMonth.add(new CategorySum("交際費",entameSum));
-		csLastMonth.add(new CategorySum("交通費",trafficSum));
-		csLastMonth.add(new CategorySum("娯楽",amusementSum));
-		csLastMonth.add(new CategorySum("衣服・美容",fashionSum));
-		csLastMonth.add(new CategorySum("雑貨", goodsSum));
-		csLastMonth.add(new CategorySum("医療費",medicalSum));
-		csLastMonth.add(new CategorySum("公共料金",publicfeeSum));
-		csLastMonth.add(new CategorySum("家賃",rentSum));
-		csLastMonth.add(new CategorySum("その他",othersSum));
-		
-		model.addAttribute("csLastMonth", csLastMonth);
-		model.addAttribute("totalLastSum", totalLastSum);
+			csLastMonth.add(new CategorySum("食費",foodSum));
+			csLastMonth.add(new CategorySum("日用品",dailySum));
+			csLastMonth.add(new CategorySum("交際費",entameSum));
+			csLastMonth.add(new CategorySum("交通費",trafficSum));
+			csLastMonth.add(new CategorySum("娯楽",amusementSum));
+			csLastMonth.add(new CategorySum("衣服・美容",fashionSum));
+			csLastMonth.add(new CategorySum("雑貨", goodsSum));
+			csLastMonth.add(new CategorySum("医療費",medicalSum));
+			csLastMonth.add(new CategorySum("公共料金",publicfeeSum));
+			csLastMonth.add(new CategorySum("家賃",rentSum));
+			csLastMonth.add(new CategorySum("その他",othersSum));
+			
+			model.addAttribute("csLastMonth", csLastMonth);
+			model.addAttribute("totalLastSum", totalLastSum);
 
 		
-		/*今月のカテゴリー別支出額*/
-		List<CategorySum> csThisMonth = new ArrayList<CategorySum>();
-		List<DataTable> thisManthList = dao.getThismonth(id);
-		foodSum = new BigDecimal(0);
-		dailySum = new BigDecimal(0);
-		entameSum = new BigDecimal(0);
-		trafficSum = new BigDecimal(0);
-		amusementSum = new BigDecimal(0);
-		fashionSum = new BigDecimal(0);
-		goodsSum = new BigDecimal(0);
-		medicalSum = new BigDecimal(0);
-		publicfeeSum = new BigDecimal(0);
-		rentSum = new BigDecimal(0);
-		othersSum = new BigDecimal(0);
-		BigDecimal totalThisSum = new BigDecimal(0); //今月の合計値
+			/*今月のカテゴリー別支出額*/
+			List<CategorySum> csThisMonth = new ArrayList<CategorySum>();
+			List<DataTable> thisManthList = dao.getThismonth(id);
+			foodSum = new BigDecimal(0);
+			dailySum = new BigDecimal(0);
+			entameSum = new BigDecimal(0);
+			trafficSum = new BigDecimal(0);
+			amusementSum = new BigDecimal(0);
+			fashionSum = new BigDecimal(0);
+			goodsSum = new BigDecimal(0);
+			medicalSum = new BigDecimal(0);
+			publicfeeSum = new BigDecimal(0);
+			rentSum = new BigDecimal(0);
+			othersSum = new BigDecimal(0);
+			BigDecimal totalThisSum = new BigDecimal(0); //今月の合計値
 
 		
-		for (int i = 0; i < thisManthList.size(); i++) {
-		foodSum = foodSum.add(thisManthList.get(i).getFood());
-		dailySum = dailySum.add(thisManthList.get(i).getDaily());
-		entameSum = entameSum.add(thisManthList.get(i).getEntame());
-		trafficSum = trafficSum.add(thisManthList.get(i).getTraffic());
-		amusementSum = amusementSum.add(thisManthList.get(i).getAmusement());
-		fashionSum = fashionSum.add(thisManthList.get(i).getFashion());
-		goodsSum = goodsSum.add(thisManthList.get(i).getGoods());
-		medicalSum = medicalSum.add(thisManthList.get(i).getMedical());
-		publicfeeSum = publicfeeSum.add(thisManthList.get(i).getPublicfee());
-		rentSum = rentSum.add(thisManthList.get(i).getRent());
-		othersSum = othersSum.add(thisManthList.get(i).getOthers());
-		}
-		totalThisSum = foodSum.add(dailySum.add(entameSum.add(trafficSum.add(amusementSum
-		.add(fashionSum.add(goodsSum.add(medicalSum.add(publicfeeSum.add(rentSum.add(othersSum))))))))));
-		
-		csThisMonth.add(new CategorySum("食費",foodSum));
-		csThisMonth.add(new CategorySum("日用品",dailySum));
-		csThisMonth.add(new CategorySum("交際費",entameSum));
-		csThisMonth.add(new CategorySum("交通費",trafficSum));
-		csThisMonth.add(new CategorySum("娯楽",amusementSum));
-		csThisMonth.add(new CategorySum("衣服・美容",fashionSum));
-		csThisMonth.add(new CategorySum("雑貨", goodsSum));
-		csThisMonth.add(new CategorySum("医療費",medicalSum));
-		csThisMonth.add(new CategorySum("公共料金",publicfeeSum));
-		csThisMonth.add(new CategorySum("家賃",rentSum));
-		csThisMonth.add(new CategorySum("その他",othersSum));
-		
-		model.addAttribute("csThisMonth", csThisMonth); 
-		model.addAttribute("totalThisSum", totalThisSum);
-		
-		BigDecimal detailsMonth = new BigDecimal(0);
-		model.addAttribute("details_month", detailsMonth);
-		return "details_month";
-		}
+			for (int i = 0; i < thisManthList.size(); i++) {
+			foodSum = foodSum.add(thisManthList.get(i).getFood());
+			dailySum = dailySum.add(thisManthList.get(i).getDaily());
+			entameSum = entameSum.add(thisManthList.get(i).getEntame());
+			trafficSum = trafficSum.add(thisManthList.get(i).getTraffic());
+			amusementSum = amusementSum.add(thisManthList.get(i).getAmusement());
+			fashionSum = fashionSum.add(thisManthList.get(i).getFashion());
+			goodsSum = goodsSum.add(thisManthList.get(i).getGoods());
+			medicalSum = medicalSum.add(thisManthList.get(i).getMedical());
+			publicfeeSum = publicfeeSum.add(thisManthList.get(i).getPublicfee());
+			rentSum = rentSum.add(thisManthList.get(i).getRent());
+			othersSum = othersSum.add(thisManthList.get(i).getOthers());
+			}
+			totalThisSum = foodSum.add(dailySum.add(entameSum.add(trafficSum.add(amusementSum
+			.add(fashionSum.add(goodsSum.add(medicalSum.add(publicfeeSum.add(rentSum.add(othersSum))))))))));
+			
+			csThisMonth.add(new CategorySum("食費",foodSum));
+			csThisMonth.add(new CategorySum("日用品",dailySum));
+			csThisMonth.add(new CategorySum("交際費",entameSum));
+			csThisMonth.add(new CategorySum("交通費",trafficSum));
+			csThisMonth.add(new CategorySum("娯楽",amusementSum));
+			csThisMonth.add(new CategorySum("衣服・美容",fashionSum));
+			csThisMonth.add(new CategorySum("雑貨", goodsSum));
+			csThisMonth.add(new CategorySum("医療費",medicalSum));
+			csThisMonth.add(new CategorySum("公共料金",publicfeeSum));
+			csThisMonth.add(new CategorySum("家賃",rentSum));
+			csThisMonth.add(new CategorySum("その他",othersSum));
+			
+			model.addAttribute("csThisMonth", csThisMonth); 
+			model.addAttribute("totalThisSum", totalThisSum);
+			
+			BigDecimal detailsMonth = new BigDecimal(0);
+			model.addAttribute("details_month", detailsMonth);
+			return "details_month";
+			}
 }

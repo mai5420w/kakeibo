@@ -18,7 +18,7 @@ public class DataSum {
 	}
 
 	public void setDate(String date) {
-		this.data = data;
+		this.data = date;
 	}
 
 	public BigDecimal getSum() {

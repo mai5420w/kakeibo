@@ -1,24 +1,45 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<!-- 日本語入力できるようにする処理 -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>編集</title>
-</head>
-<body>
- <div>
-    <form th:action="@{/top}" th:object="${users}" method="get">
-        <a href='http://localhost:8080/top'>
-        <img src="kakeibo.jpg" width="100" height="100" alt="logo"></img></a>
-        <input type="hidden" name = "id" th:value = "${id}" />
-    </form>
-    </div>
-新しい金額を入力してください。
-<h3 th:text="${message}"></h3>
-<form th:action="@{/editup}" method="get">
-¥<input type="text"  name="expense" size="20" maxlength="7" pattern="^[0-9]+$" required="required" />
 
-<input type="submit" value="更新"/>
-</form>
+<html>
+  <head>
+    <title>Kakeibo By Seattle girls</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="/css/style.css" />
+    
+  </head>
+<body class="landing">
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
+    <!-- Banner -->
+    <section id="banner">
+      <div class="inner">
+        <input type="hidden" name = "id" th:value="${id}" />
+        <section id="cta" class="wrapper style4">
+          <div class="inner">
+            <header>
+              <h2>家計簿アプリ</h2>
+              <p>わずか3秒で出費を記録。</p>
+              <p>今度こそ続く家計簿。</p>
+            </header>
+            <div class="actions vertical">
+              <div style="float:left;">
+                <p>新しい金額を入力してください。</p>
+                <h3 th:text="${message}"></h3>
+                <form th:action="@{/editup}" method="get">
+                  <input class="button fit" type="text" name="expense" size="20" maxlength="7" required="required" placeholder="金額を入力" pattern="^[0-9]+$" />
+                  <input type="submit" value="更新"/>
+                </form>
+                <form th:action="@{/top}" th:object="${users}" method="get">
+                  <a href='http://localhost:8080/top'><button class="button special">TOP</button></a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
 </body>
 </html>

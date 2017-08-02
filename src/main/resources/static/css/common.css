@@ -1,0 +1,19 @@
+body {
+    font-family: "ヒラギノ角ゴ Pro W3", Hiragino Kaku Gothic Pro, "ＭＳ Ｐゴシック", Osaka, Helvetica, Arial, sans-serif;
+    }
+.tdPadding {
+    padding: 0px;
+}
+#cta .inner header {
+    width: 44% !important;
+}
+
+#cta .inner .actions {
+	width:54% !important;
+}
+.tableLeft {
+    display: inline-block;
+}
+.tableRight {
+    display: inline-block;
+}

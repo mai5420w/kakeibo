@@ -63,10 +63,10 @@ public class PayDaoImpl implements PayDao<DataTable>{
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DataTable> getDate(String id,String date) {//TODO もしかしたらDate dateかも?
+	public List<DataTable> getDate(String id,String date) {
 		final List<DataTable> pays =
 				entityManager
-				.createNativeQuery("SELECT * FROM datatbl WHERE id =:id AND date = :date ", DataTable.class)//TODO and where date = ''で日付指定
+				.createNativeQuery("SELECT * FROM datatbl WHERE id =:id AND date = :date ", DataTable.class)
 				.setParameter("id", id).setParameter("date", date)
 				.getResultList();
 		return pays;

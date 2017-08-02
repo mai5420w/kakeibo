@@ -1,33 +1,55 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<title>daily expense</title>
-<link rel="history" href="/css/history.css" />
-</head>
-<body>
- <div Align="center">
-    <form th:action="@{/top}" th:object="${users}" method="get">
-        <a href='http://localhost:8080/top'>
-        <img src="kakeibo.jpg" width="100" height="100" alt="logo"></img></a>
-        <input type="hidden" name = "id" th:value = "${id}" />
-    </form>
-		<h1>りれき</h1>
-	 	<a th:href="@{http://localhost:8080/details_month(id=${id})}">月別表示</a>
-	 	<form th:action="@{/history}" th:object="${categorySum}" method="post">
-		<table>
-			<tr>
-				<th>日付</th>
-				<th>支出額</th>
-			</tr>
-				<tr th:each="ds : ${ds}">
-				<td th:text="${ds.date}"></td>
-				<td th:text=" '  ¥' + ${ds.sum}"></td>
-				<td> <a th:href="@{http://localhost:8080/details_day(date=${ds.date})}">詳細</a></td>
-				<input type="hidden" name = "dataId" th:value="${dataId}" />
-			</tr>
-		</table>
-	</form>
+<html>
+	<head>
+		<title>Kakeibo By Seattle girls</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/css/style.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="landing">
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<form th:action="@{/history}" th:object="${categorySum}" method="post">
+					<input type="hidden" name = "id" th:value="${id}" />
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>家計簿アプリ</h2>
+								<p>わずか3秒で出費を記録。</p>
+								<p>今度こそ続く家計簿。</p>
+							</header>
+							<div class="actions vertical">
+								<div style="float:left;">
+									<form th:action="@{/history}" th:object="${categorySum}" method="post">
+										<table>
+											<tr>
+												<th>日付</th>
+												<th>支出額</th>
+											</tr>
+											<tr th:each="ds : ${ds}">
+												<td><a th:href="@{http://localhost:8080/details_day(date=${ds.date})}" th:text="${ds.date}"></a></td>
+												<td th:text=" '  ¥' + ${ds.sum}"></td>
+												<input type="hidden" name = "dataId" th:value="${dataId}" />
+											</tr>
+										</table>
+										<a th:href="@{http://localhost:8080/details_month(id=${id})}">月別表示</a>
+									</form>
+								</div>
+							</div>
+						</div>
+					</section>
+				</form>
+			</div>
+			<form th:action="@{/top}" th:object="${users}" method="get">
+				<a href='http://localhost:8080/top'><button class="button special">TOP</button></a>
+			</form>
+		</section>
 	</div>
-</body>
+  </body>
 </html>

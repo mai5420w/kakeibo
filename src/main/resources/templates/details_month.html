@@ -1,75 +1,85 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<!-- 日本語入力できるようにする処理 -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
-<br />
-
-<body>
- <div Align="center">
-    <form th:action="@{/top}" th:object="${users}" method="get">
-        <a href='http://localhost:8080/top'>
-        <img src="kakeibo.jpg" width="100" height="100" alt="logo"></img></a>
-        <input type="hidden" name = "id" th:value = "${id}" />
-    </form>
-<h1>月別表示</h1>
-
-<form action="#" th:action="@{/details_month}" th:object="${detailsMonth}" method ="get">
-	
-	<input type="hidden" name = "id" th:value="${id}" />
-
-<table border = "1"><tr><td >
-	<table border = "1">
-	<caption>先月</caption>
-	
-	<thead>
-	<tr>
-		<th>カテゴリー</th>
-		<th>支出額</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	<tr th:each="csLastMonth : ${csLastMonth}">
-		<td th:text="${csLastMonth.category}"></td>
-		<td th:text="${csLastMonth.dailySum}"></td>
-	</tr>
-	</tbody>
-	
-	</table>
-
-<p th:text="'合計: ¥' + ${totalLastSum} + '-'"></p>
-
-</td>
-	
-<td valign="top">
-
-<table border = "1">
-<caption>今月</caption>
-	<thead>
-	<tr>
-		<th>カテゴリー</th>
-		<th>支出額</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	<tr th:each="csThisMonth : ${csThisMonth}">
-		<td th:text="${csThisMonth.category}"></td>
-		<td th:text="${csThisMonth.dailySum}"></td>
-	</tr>
-	</tbody>
-	
-</table>
-
-<p th:text="'合計: ¥' + ${totalThisSum} + '-'"></p>
-
-</td></tr></table>
-
-
-	</form>
-	</div>
-</body>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kakeibo By Seattle girls</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/common.css" />
+	</head>
+	<body class="landing">
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+			<!-- Banner -->
+				<section id="banner">
+					<div class="inner">
+						<div class="payment" th:text="'今月の支出: ¥' + ${sum} + '-'"></div>
+						<p><a th:href="@{http://localhost:8080/history(id=${id})}">りれき</a></p>
+						<form th:action="@{/top/input}" th:object="${dataBox}" method="post">
+							<input type="hidden" name = "id" th:value="${id}" />
+							<section id="cta" class="wrapper style4">
+							<div class="inner">
+								<header>
+									<h2>家計簿アプリ</h2>
+									<p>わずか3秒で出費を記録。今度こそ続く家計簿。</p>
+								</header>
+								<ul class="actions vertical">
+									<form action="#" th:action="@{/details_month}" th:object="${detailsMonth}" method ="get">
+										<div class="tableAll">
+											<div class="tableLeft">
+												<div id="kkb_table">
+													<table>
+														<tbody>
+															<tr>
+																<th colspan="2" class="kkb_th">先月の支出</th>
+															</tr>
+															<tr th:each="csLastMonth : ${csLastMonth}">
+																<td class="category tdPadding" th:text="${csLastMonth.category}"></td>
+																<td class="money tdPadding" th:text="${csLastMonth.dailySum}"></td> 
+															</tr>
+															<tr class="kkb_total"> 
+																<td>支出の合計</td>
+																<td th:text="${totalLastSum}" class="money"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="tableRight">
+												<div id="kkb_table">
+													<table>
+														<tbody>
+															<tr>
+																<th colspan="2" class="kkb_th">今月の支出</th>
+															</tr>
+															<tr th:each="csThisMonth : ${csThisMonth}">
+																<td class="category tdPadding" th:text="${csThisMonth.category}"></td>
+																<td class="money tdPadding" th:text="${csThisMonth.dailySum}"></td> 
+															</tr>
+															<tr class="kkb_total"> 
+																<td>支出の合計</td>
+																<td th:text="${totalThisSum}" class="money"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</form>
+								</ul>
+							</div>
+							<form th:action="@{/top}" th:object="${users}" method="get">
+								<a href='http://localhost:8080/top'><button class="button special">TOP</button></a>
+							</form>
+						</section>
+					</form>
+				</div>
+			</section>
+		</div>
+	</body>
 </html>

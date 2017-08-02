@@ -30,9 +30,9 @@ public class HistoryDaoImpl implements HistoryDao<DataTable>{
 	 * データをupdateして返す
 	 */
 	@Override
-	public DataTable updateData(DataTable data, BigDecimal newExpense){ //TODO Data_idはhtmlから取得
+	public DataTable updateData(DataTable data, BigDecimal newExpense){ 
 		if(data == null){
-			System.out.println("nullです。");
+			System.out.println("金額が入力されていません。");
 		}else{
 
 			BigDecimal expense = new BigDecimal(0); //¥0を含めたすべての金額(decimal)を格納する

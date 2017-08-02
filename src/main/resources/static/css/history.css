@@ -1,3 +1,8 @@
+.historyAll {
+    Align="center;
+}
+
+
 form {
     margin: 10px auto;
     background: @link;

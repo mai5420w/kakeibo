@@ -1,0 +1,87 @@
+body {
+    font-family: "ヒラギノ角ゴ Pro W3", Hiragino Kaku Gothic Pro, "ＭＳ Ｐゴシック", Osaka, Helvetica, Arial, sans-serif;
+    }
+body { 
+	background-color: #f0f0f0;
+	font-size: 14px; color: #333;
+	margin: 0 auto; 
+}
+h1,h2,h3,h4,h5,h6,p {
+ padding: 10px 0;
+  margin: 0; 
+}
+.titleAll {
+    with: 664px;
+    height: 100px;
+} 
+header {
+ background-color: gray; height: 150px; 
+ }
+.title {
+	font-family: fantasy;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    height: 80px;
+    background: rgba(14, 154, 151, 0.24);
+    border-radius: 20px;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 10px;
+}
+.tableAll {
+    width: 1200px;
+    height: 800px;
+}
+.tableLeft {
+    width: 45%;
+    display: inline-block;
+    margin: 0px,20px;
+}
+.tableRight {
+    width: 45%;
+    fdisplay: inline-block;
+    margin: 0px,20px;
+}
+#kkb_table table {
+    border-right: 1px solid #cfcfcf;
+    border-left: 1px solid #cfcfcf;
+    margin: 0 0 1.5em;
+    width: 540px;
+}
+#kkb_table th {
+    background-color: #ef8270;
+    color: #fff;
+    line-height: 1em;
+    padding: 0.7em;
+    border-top: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+    text-align: left;
+}
+#kkb_table td {
+    background-color: #fcf8ec;
+    line-height: 10px;
+    padding: 15px;
+    border-bottom: 1px solid #cfcfcf;
+}
+#kkb_table .category{
+	with: 165px;
+	margin-left: 10px;
+}
+#kkb_table .money{
+	width: 80px;
+	text-align: right;
+}
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+#kkb_table .kkb_total td {
+    color: #ea6c57;
+    background-color: #fcedef;
+    line-height: 1em;
+}
